@@ -1,43 +1,95 @@
+
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(StepGreenerApp());
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
-
+class StepGreenerApp extends StatelessWidget {
   @override
-  State<MyApp> createState() => _MyAppState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'StepGreener',
+      theme: ThemeData(
+        primarySwatch: Colors.green,
+      ),
+      home: LoginPage(),
+    );
+  }
 }
 
-class _MyAppState extends State<MyApp> {
-  late GoogleMapController mapController;
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
 
-  final LatLng _center = const LatLng(45.521563, -122.677433);
+class _LoginPageState extends State<LoginPage> {
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  bool _isLoading = false;
 
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
+  Future<void> _login() async {
+    if (_formKey.currentState!.validate()) {
+      setState(() => _isLoading = true);
+      try {
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim(),
+        );
+        // Navigate to home screen upon successful login
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Login failed: ${e.toString()}')),
+        );
+      }
+      setState(() => _isLoading = false);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        useMaterial3: true,
-        colorSchemeSeed: Colors.green[700],
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('StepGreener'),
-          elevation: 2,
-        ),
-        body: GoogleMap(
-          onMapCreated: _onMapCreated,
-          initialCameraPosition: CameraPosition(
-            target: _center,
-            zoom: 11.0,
+    return Scaffold(
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'StepGreener',
+                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.green),
+                ),
+                SizedBox(height: 20),
+                TextFormField(
+                  controller: _emailController,
+                  decoration: InputDecoration(labelText: 'Email', border: OutlineInputBorder()),
+                  validator: (value) => (value == null || !value.contains('@')) ? 'Enter a valid email' : null,
+                ),
+                SizedBox(height: 10),
+                TextFormField(
+                  controller: _passwordController,
+                  decoration: InputDecoration(labelText: 'Password', border: OutlineInputBorder()),
+                  obscureText: true,
+                  validator: (value) => (value == null || value.length < 6) ? 'Enter a valid password' : null,
+                ),
+                SizedBox(height: 20),
+                _isLoading
+                    ? CircularProgressIndicator()
+                    : ElevatedButton(
+                        onPressed: _login,
+                        child: Text('Login', style: TextStyle(fontSize: 18)),
+                      ),
+                TextButton(
+                  onPressed: () {},
+                  child: Text('Forgot Password?'),
+                ),
+              ],
+            ),
           ),
         ),
       ),
