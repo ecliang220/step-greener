@@ -6,7 +6,7 @@
 
         <!-- Special config: Add API key -->
         <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="ENTER API KEY"/>
+            android:value="AIzaSyBAWQBYtkW_3KPeqRXYjrtQFL8nmzGIOsQ”/>
 
         <activity
             android:name=".MainActivity"
