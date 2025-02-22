@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:google_maps_in_flutter/LoginPage.dart';
+import 'package:google_maps_in_flutter/login_page.dart';
 
 // helloooooo dis is our App :3
 StepGreenerApp stepGreenerApp = StepGreenerApp();
