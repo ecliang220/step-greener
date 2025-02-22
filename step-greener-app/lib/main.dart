@@ -1,10 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_maps_in_flutter/LoginPage.dart';
 
-// helloooooo
+// helloooooo dis is our App :3
+StepGreenerApp stepGreenerApp = StepGreenerApp();
 
 void main() {
-  runApp(const MyApp());
+  runApp(stepGreenerApp);
+}
+
+class StepGreenerApp extends StatefulWidget {
+  const StepGreenerApp({super.key});
+
+  @override
+  State<StepGreenerApp> createState() => _StepGreenerAppState();
+}
+
+class _StepGreenerAppState extends State<StepGreenerApp> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: LoginPage(),
+    );
+  }
 }
 
 class MyApp extends StatefulWidget {
