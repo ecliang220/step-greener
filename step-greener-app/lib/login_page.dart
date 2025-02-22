@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,40 +18,62 @@ class LoginPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            //Spacer to move StepGreener above the middle
+            const SizedBox(height: 150),
+
             // StepGreener logo and text
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            Column(
               children: [
-                Image.asset('assets/images/right_footprint.png', width: 50), // Footprint image
-                SizedBox(width: 8), // Space between image and text
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset('assets/images/right_footprint.png', width: 30), // Footprint image
+                    const SizedBox(width: 2), // Space between image and text
+                    Text(
+                      'Step',
+                      style: GoogleFonts.poppins(
+                        color: const Color.fromARGB(255, 33, 125, 35),
+                        fontSize: 35,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
                 Text(
-                  'Step\nGreener',
-                  style: GoogleFonts.kaushanScript(
-                    color: Color.fromARGB(255,33, 125, 35), // Text color
-                    fontSize: 32,
+                  'Greener',
+                  style: GoogleFonts.poppins(
+                    color: const Color.fromARGB(255, 33, 125, 35), // Text Color
+                    fontSize: 35,
                     fontWeight: FontWeight.bold,
-                    height: 1.5, // Adjust line spacing for "Step" and "Greener"
                   ),
                   textAlign: TextAlign.center,
                 ),
               ],
             ),
-            SizedBox(height: 40), // Space after logo
+            const SizedBox(height: 50), // Space after logo
 
             // Username section
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Username:', style: GoogleFonts.raleway(fontSize: 16)),
+                'Username:',
+                style: GoogleFonts.poppins(
+                  fontSize: 16,
+                  color: const Color.fromARGB(255, 46, 105, 48),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
-            TextField(
+            const TextField(
               decoration: InputDecoration(
                 hintText: 'example@gmail.com',
                 border: OutlineInputBorder(),
+                fillColor: Colors.white,
+                filled: true,
                 contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Align(
               alignment: Alignment.centerRight,
               child: GestureDetector(
@@ -55,76 +82,94 @@ class LoginPage extends StatelessWidget {
                 },
                 child: Text(
                   'Forgot Username?',
-                  style: GoogleFonts.raleway(
+                  style: GoogleFonts.poppins(
                     color: Colors.blue,
                     decoration: TextDecoration.underline,
+                    fontSize: 14,
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 20), // Space between sections
+            const SizedBox(height: 20), // Space between sections
 
             // Password section
             Align(
               alignment: Alignment.centerLeft,
-              child: Text('Password:', style: TextStyle(fontSize: 16)),
+              child: Text(
+                'Password:',
+                style: GoogleFonts.poppins(
+                  fontSize: 16,
+                  color: const Color.fromARGB(255, 46, 105, 48),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
-            TextField(
+            const TextField(
               obscureText: true, // Bullets for password input
               decoration: InputDecoration(
-                hintText: '••••••••••••', // 10 bullet placeholder
+                hintText: '••••••••••••',
                 border: OutlineInputBorder(),
+                fillColor: Colors.white, // Set background color to white
+                filled: true, // Enable the background color
                 contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Align(
               alignment: Alignment.centerRight,
               child: GestureDetector(
                 onTap: () {
                   // Add functionality for "Forgot Password?"
                 },
-                child: Text(
+                child: const Text(
                   'Forgot Password?',
                   style: TextStyle(
                     color: Colors.blue,
                     decoration: TextDecoration.underline,
+                    fontSize: 15,
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 40), // Space before button
+            const SizedBox(height: 40), // Space before button
 
-            // Step In button inside a green ellipse
+            // Step In button
             ElevatedButton(
               onPressed: () {
                 // Add functionality for the "Step In" button
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF006D2C), // Green ellipse background color
-                shape: StadiumBorder(), // Elliptical shape
-                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                backgroundColor: const Color(0xFF006D2C),
+                shape: const StadiumBorder(), // Elliptical shape
+                padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
               ),
-              child: Text(
+              child: const Text(
                 'Step In!',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
               ),
             ),
-            SizedBox(height: 40), // Space before "Create Account"
+            const SizedBox(height: 60), // Space before "Create Account"
 
-            // "Don't have account?" and "Create Account" link
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            // "Don't have account?" and "Create Account" link stacked
+            Column(
               children: [
-                Text("Don't have an account? "),
+                Text(
+                  "Don't have account?",
+                  style: GoogleFonts.poppins(
+                    fontSize: 14,
+                    color: const Color.fromARGB(255, 46, 105, 48),
+                  ),
+                ),
                 GestureDetector(
                   onTap: () {
                     // Add functionality for "Create Account"
                   },
                   child: Text(
                     'Create Account',
-                    style: TextStyle(
-                      color: Colors.blue,
+                    style: GoogleFonts.poppins(
+                      fontSize: 18,
+                      color: const Color.fromARGB(255, 46, 105, 48),
+                      fontWeight: FontWeight.bold,
                       decoration: TextDecoration.underline,
                     ),
                   ),
@@ -137,3 +182,4 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
+
