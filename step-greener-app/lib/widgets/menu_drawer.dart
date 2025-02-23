@@ -1,13 +1,13 @@
 // menu_drawer.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_maps_in_flutter/theme/app_colors.dart';
-import 'package:google_maps_in_flutter/pages/locations_map_page.dart';
-import 'package:google_maps_in_flutter/pages/my_step_log_page.dart';
-import 'package:google_maps_in_flutter/widgets/page_template.dart';
-import 'package:google_maps_in_flutter/pages/rewards_page.dart';
-import 'package:google_maps_in_flutter/pages/help_page.dart';
-import 'package:google_maps_in_flutter/pages/settings_page.dart';
+import 'package:step_greener/theme/app_colors.dart';
+import 'package:step_greener/pages/locations_map_page.dart';
+import 'package:step_greener/pages/my_step_log_page.dart';
+import 'package:step_greener/widgets/page_template.dart';
+import 'package:step_greener/pages/rewards_page.dart';
+import 'package:step_greener/pages/help_page.dart';
+import 'package:step_greener/pages/settings_page.dart';
 
 class MenuDrawer extends StatefulWidget {
   final VoidCallback onMenuItemSelected;

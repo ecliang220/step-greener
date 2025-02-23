@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_maps_in_flutter/pages/locations_map_page.dart';
-import 'package:google_maps_in_flutter/widgets/page_template.dart';
+import 'package:step_greener/pages/locations_map_page.dart';
+import 'package:step_greener/widgets/page_template.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -29,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset('assets/images/right_footprint.png', width: 30), // Footprint image
+                    Image.asset('assets/images/greenfootprint.png', width: 30), // Footprint image
                     const SizedBox(width: 2), // Space between image and text
                     Text(
                       'Step',

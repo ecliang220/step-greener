@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_maps_in_flutter/widgets/page_template.dart';
+import 'package:step_greener/widgets/page_template.dart';
 
 // TODO: Implement
 class RewardsPage extends StatefulWidget {
