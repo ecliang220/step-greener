@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_maps_in_flutter/app_colors.dart';
+import 'package:google_maps_in_flutter/theme/app_colors.dart';
 
 class PointsDisplay extends StatelessWidget {
   // TODO: Once backend implemented, replace with rest call to retrieve points
