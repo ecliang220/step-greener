@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_maps_in_flutter/pages/locations_map_page.dart';
+import 'package:google_maps_in_flutter/widgets/page_template.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -137,6 +139,14 @@ class _LoginPageState extends State<LoginPage> {
             ElevatedButton(
               onPressed: () {
                 // Add functionality for the "Step In" button
+                // TODO: Replace with authentication process
+                setState(() {
+                  Navigator.pushReplacement(
+                    context, 
+                    MaterialPageRoute(  // Temporarily allow login without account verification
+                      builder: ( context ) => PageTemplate( page: LocationsMapPage(), pageType: LocationsMapPage.pageType, ) )
+                  );
+                });
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF006D2C),

@@ -1,11 +1,20 @@
 // main_page.dart
 import 'package:flutter/material.dart';
-import 'package:google_maps_in_flutter/app_bar.dart';
-import 'package:google_maps_in_flutter/menu_drawer.dart';
+import 'package:google_maps_in_flutter/widgets/app_bar.dart';
+import 'package:google_maps_in_flutter/widgets/menu_drawer.dart';
+
+enum PageType {
+  map,
+  myStepLog,
+  rewards,
+  help,
+  settings
+}
 
 class PageTemplate extends StatefulWidget {
-  final Widget? page;
-  const PageTemplate({super.key, this.page});
+  final Widget page;
+  final PageType pageType;
+  const PageTemplate({super.key, required this.page, required this.pageType});
 
   @override
   State<PageTemplate> createState() => _PageTemplateState();
@@ -42,6 +51,7 @@ class _PageTemplateState extends State<PageTemplate> {
       appBar: StepGreenerAppBar(
         onMenuIconPressed: _toggleMenuIcon, // Pass function to change icon
         menuIcon: _menuIcon,
+        pageType: widget.pageType,
       ),
       body: Scaffold(
         key: _scaffoldKey,
@@ -54,7 +64,7 @@ class _PageTemplateState extends State<PageTemplate> {
           },
         ),
         body: Center(
-          child: (widget.page != null) ? widget.page : Text('REPACE THIS Text() WITH WIDGET FOR PAGE!'), // TODO: Replace with page to switch to
+          child: widget.page
         ),
       )
     );
