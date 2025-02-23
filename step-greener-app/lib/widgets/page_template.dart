@@ -5,6 +5,7 @@ import 'package:step_greener/widgets/menu_drawer.dart';
 
 enum PageType {
   map,
+  profile,
   myStepLog,
   rewards,
   help,
@@ -55,6 +56,7 @@ class _PageTemplateState extends State<PageTemplate> {
       ),
       body: Scaffold(
         key: _scaffoldKey,
+        drawerEnableOpenDragGesture: false,
         drawer: MenuDrawer(
           onMenuItemSelected: () {
             setState(() {
