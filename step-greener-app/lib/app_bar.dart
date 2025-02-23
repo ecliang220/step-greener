@@ -15,35 +15,51 @@ class StepGreenerAppBar extends StatelessWidget implements PreferredSizeWidget {
   });
 
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight + 10);
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: IconButton(
-        icon: Icon(menuIcon),
-        onPressed: onMenuIconPressed,
-        iconSize: 50,
+      flexibleSpace: LayoutBuilder(
+        builder: (context, constraints) {
+          double width = constraints.maxWidth;
+          return Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                  icon: Icon(menuIcon),
+                  onPressed: onMenuIconPressed,
+                  iconSize: 50,
+                ),
+                Row( // Place logo and App Title close together
+                  children: [
+                    Image.asset(
+                      'assets/images/right_footprint.png',
+                      width: width * 0.06
+                    ),
+                    Text("StepGreener", 
+                      style: GoogleFonts.poppins(
+                        textStyle: TextStyle(
+                          fontSize: width * 0.06,
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.primaryText
+                        )
+                      ) 
+                    )
+                  ]
+                ),
+                // SizedBox(width: 10),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: PointsDisplay()
+                ),
+              ],
+            ),
+          );
+        }
       ),
-      title: Row(
-        children: [
-          Image.asset(
-            'assets/images/right_footprint.png',
-            width: 30
-          ),
-          Text("StepGreener", 
-            style: GoogleFonts.poppins(
-              textStyle: TextStyle(
-                fontSize: 35,
-                fontWeight: FontWeight.w500,
-                color: AppColors.primaryText
-              )
-            ) 
-          ),
-          SizedBox(width: 10),
-          PointsDisplay(),
-        ],
-      ),
+      title: null,
       backgroundColor: AppColors.primaryBackground,
       shape: Border(
         bottom: BorderSide(
@@ -54,71 +70,3 @@ class StepGreenerAppBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 }
-
-// import 'package:flutter/material.dart';
-// import 'package:google_fonts/google_fonts.dart';
-// import 'package:google_maps_in_flutter/app_colors.dart';
-
-// class StepGreenerAppBar extends StatefulWidget implements PreferredSizeWidget {
-//   final GlobalKey<ScaffoldState> scaffoldkey;
-//   final GlobalKey<StepGreenerAppBarState> appBarKey;
-
-//   const StepGreenerAppBar({super.key, required this.scaffoldkey, required this.appBarKey});
-
-//   @override
-//   State<StepGreenerAppBar> createState() => StepGreenerAppBarState();
-  
-//   @override
-//   Size get preferredSize => Size.fromHeight(kToolbarHeight + 10); // Add 10 for padding below title: StepGreener
-// }
-
-// class StepGreenerAppBarState extends State<StepGreenerAppBar> {
-//   bool isMenuOpen = false;
-
-//   void toggleMenu() {
-//     setState( () {
-//       isMenuOpen = !isMenuOpen;
-//       if ( isMenuOpen ) {
-//         widget.scaffoldkey.currentState?.openDrawer();
-//       } else {
-//         // widget.scaffoldkey.currentState?.openEndDrawer();
-//         widget.scaffoldkey.currentState?.closeDrawer();
-//       }
-//     } );
-//   }
-//   void changeIconState() {
-
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return AppBar(
-//       key: widget.appBarKey,
-//       leading: IconButton(
-//         icon: Icon( isMenuOpen ? Icons.close : Icons.menu ),
-//         onPressed: toggleMenu,
-//         iconSize: 50,
-//       ),
-//       title: Row(
-//         children: [
-//           Image.asset(
-//             'assets/images/right_footprint.png',
-//             width: 30
-//           ),
-//           Text("StepGreener", 
-//             style: GoogleFonts.poppins(
-//               textStyle: TextStyle(
-//                 fontSize: 35,
-//                 fontWeight: FontWeight.w500,
-//                 color: AppColors.primaryText
-//               )
-//             ) 
-//           ),
-//         ],
-//       ),
-//       backgroundColor: AppColors.primaryBackground,
-//       elevation: 2,
-//     );
-      
-//   }
-// }

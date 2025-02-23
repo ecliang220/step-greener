@@ -11,8 +11,8 @@ class PointsDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
             padding: EdgeInsets.all(5), // Padding inside the container
-            height: 40,
-            width: 90,
+            height: 35,
+            width: 85,
             decoration: BoxDecoration(
               border: Border.all(color: AppColors.primaryBorder, width: 3), // Border around the container
               borderRadius: BorderRadius.circular(12),
@@ -24,7 +24,7 @@ class PointsDisplay extends StatelessWidget {
                   child: Text(
                     '$totalPoints', // Displaying the total points
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 14,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                     ),

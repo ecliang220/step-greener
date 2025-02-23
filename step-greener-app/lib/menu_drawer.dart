@@ -27,7 +27,7 @@ class MenuDrawer extends StatelessWidget {
           child: ListView(
             children: [
               SizedBox(
-                height: 80, 
+                height: 70, 
                 child: DrawerHeader(
                   decoration: BoxDecoration(
                     color: AppColors.primaryBackground,
@@ -37,7 +37,7 @@ class MenuDrawer extends StatelessWidget {
                     'Menu',
                     style: TextStyle(
                       color: AppColors.primaryText,
-                      fontSize: 30,
+                      fontSize: 20,
                     ),
                   ),
                 ),
