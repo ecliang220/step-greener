@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_maps_in_flutter/pages/login_page.dart';
+import 'package:step_greener/pages/login_page.dart';
 
 void main() {
   runApp(StepGreenerApp());
@@ -65,7 +65,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 children: [
                   // Footprint image to the left of StepGreener text
                   Image.asset(
-                    'assets/images/right_footprint.png', // Footprint image
+                    'assets/images/greenfootprint.png', // Footprint image
                     width: 50,
                     height: 50,
                   ),

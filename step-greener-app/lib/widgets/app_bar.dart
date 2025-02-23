@@ -1,9 +1,9 @@
 // my_app_bar.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_maps_in_flutter/theme/app_colors.dart';
-import 'package:google_maps_in_flutter/widgets/page_template.dart';
-import 'package:google_maps_in_flutter/widgets/points_display.dart';
+import 'package:step_greener/theme/app_colors.dart';
+import 'package:step_greener/widgets/page_template.dart';
+import 'package:step_greener/widgets/points_display.dart';
 
 class StepGreenerAppBar extends StatelessWidget implements PreferredSizeWidget {
   final IconData menuIcon;
@@ -80,7 +80,7 @@ class StepGreenerAppBar extends StatelessWidget implements PreferredSizeWidget {
                     return Row( // Place logo and App Title close together
                       children: [
                         Image.asset(
-                          'assets/images/right_footprint.png',
+                          'assets/images/greenfootprint.png',
                           width: width * 0.06
                         ),
                         Text("StepGreener", 

@@ -1,7 +1,7 @@
 // main_page.dart
 import 'package:flutter/material.dart';
-import 'package:google_maps_in_flutter/widgets/app_bar.dart';
-import 'package:google_maps_in_flutter/widgets/menu_drawer.dart';
+import 'package:step_greener/widgets/app_bar.dart';
+import 'package:step_greener/widgets/menu_drawer.dart';
 
 enum PageType {
   map,
