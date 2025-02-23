@@ -1,6 +1,7 @@
 // menu_drawer.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:step_greener/pages/profile_page.dart';
 import 'package:step_greener/theme/app_colors.dart';
 import 'package:step_greener/pages/locations_map_page.dart';
 import 'package:step_greener/pages/my_step_log_page.dart';
@@ -67,6 +68,22 @@ class _MenuDrawerState extends State<MenuDrawer> {
                   });
                 },
               ),
+              Divider(),
+              ListTile(
+                title: Text('Profile'),
+                onTap: () {
+                  widget.onMenuItemSelected(); // Close the drawer and change icon
+                  setState( () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: ( context ) => PageTemplate(page: ProfilePage(), pageType: ProfilePage.pageType)
+                      )
+                    );
+                  } );
+                },
+              ),
+              Divider(),
               ListTile(
                 title: Text('My Step Log'),
                 onTap: () {
