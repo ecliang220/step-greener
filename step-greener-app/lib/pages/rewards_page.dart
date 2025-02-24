@@ -109,7 +109,9 @@ class CouponCard extends StatelessWidget {
                           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                         Spacer(),
-                        PointsDisplay(points: int.parse(coupon['points']!), minWidth: 65)
+                        ( coupon[ 'status' ] == 'locked' ) ? 
+                          PointsDisplay(points: int.parse(coupon['points']!), minWidth: 65) :
+                          SizedBox.shrink()
                       ],
                     ),
                     SizedBox( height: 5 ),
