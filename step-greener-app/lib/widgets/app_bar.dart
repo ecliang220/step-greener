@@ -102,7 +102,7 @@ class StepGreenerAppBar extends StatelessWidget implements PreferredSizeWidget {
                     if ( pageType == PageType.map || pageType == PageType.rewards ) {
                       return Align(
                         alignment: Alignment.centerRight,
-                        child: PointsDisplay()
+                        child: PointsDisplay(points: 11287) // TODO: Example number of points
                       );
                     } else {
                       return SizedBox(width: 50,); // Match width of menu icon to center title

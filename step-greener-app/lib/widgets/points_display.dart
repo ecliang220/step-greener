@@ -3,16 +3,17 @@ import 'package:step_greener/theme/app_colors.dart';
 
 class PointsDisplay extends StatelessWidget {
   // TODO: Once backend implemented, replace with rest call to retrieve points
-  final int totalPoints = 11287; // Example number of points
+  final int points;
+  final double? minWidth;
 
-  const PointsDisplay({super.key});
+  const PointsDisplay({super.key, required this.points, this.minWidth});
 
   @override
   Widget build(BuildContext context) {
     return Container(
             padding: EdgeInsets.all(5), // Padding inside the container
             height: 35,
-            width: 85,
+            width: minWidth ?? 85,
             decoration: BoxDecoration(
               border: Border.all(color: AppColors.primaryBorder, width: 3), // Border around the container
               borderRadius: BorderRadius.circular(12),
@@ -22,7 +23,7 @@ class PointsDisplay extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    '$totalPoints', // Displaying the total points
+                    '$points', // Displaying the total points
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.bold,
