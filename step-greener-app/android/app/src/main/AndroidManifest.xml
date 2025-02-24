@@ -1,4 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <!-- Adds required permissions here -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
     <application
         android:label="Step Greener"
         android:name="${applicationName}"
@@ -6,7 +11,7 @@
 
         <!-- Special config: Add API key -->
         <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="ENTER API KEY"/>
+            android:value="AIzaSyBAWQBYtkW_3KPeqRXYjrtQFL8nmzGIOsQ"/>
 
         <activity
             android:name=".MainActivity"
