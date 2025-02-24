@@ -74,6 +74,13 @@ flutter:
       - assets/images/right_footprint.png
       - assets/images/greenfootprint.png
       - assets/images/points_icon.png
+      - assets/images/bulbox_logo.png
+      - assets/images/cava_logo.jpg
+      - assets/images/chipotle_logo.png
+      - assets/images/neomonde_logo.jpg
+      - assets/images/raleighraw_logo.png
+      - assets/images/sweetgreen_logo.png
+
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
