@@ -1,3 +1,11 @@
+// For later use to label data objects
+enum CouponStatus {
+  unlocked,
+  locked,
+  redeemed,
+  expired
+}
+
 class RewardsCoupons {
   static final List<Map<String, String>> unlockedCoupons = [
     {
@@ -6,7 +14,8 @@ class RewardsCoupons {
       'description': 'Enjoy \$1 off your next order!',
       'details': 'Minimum order of \$12 required.',
       'expiration': '2025-04-01',
-      'points': '20'
+      'points': '20',
+      'status': 'unlocked'
     },
     {
       'image': 'assets/images/chipotle_logo.png',
@@ -14,7 +23,8 @@ class RewardsCoupons {
       'description': 'Enjoy \$2 off your next order!',
       'details': 'Minimum order of \$15 required.',
       'expiration': '2025-04-01',
-      'points': '40'
+      'points': '40',
+      'status': 'unlocked'
     },
   ];
 
@@ -25,7 +35,8 @@ class RewardsCoupons {
       'description': 'Free order of classic pita chips',
       'details': 'with the purchase of a bowl.',
       'expiration': '2025-05-01',
-      'points': '60'
+      'points': '60',
+      'status': 'locked'
     },
     {
       'image': 'assets/images/cava_logo.jpg',
@@ -33,7 +44,8 @@ class RewardsCoupons {
       'description': 'Enjoy \$2 off your next order!',
       'details': 'Minimum order of \$15 required.',
       'expiration': '2025-05-01',
-      'points': '40'
+      'points': '40',
+      'status': 'locked'
     },
     {
       'image': 'assets/images/bulbox_logo.png',
@@ -41,7 +53,8 @@ class RewardsCoupons {
       'description': '10% off your next bowl!',
       'details': 'Restrictions apply.',
       'expiration': '2025-05-01',
-      'points': '30'
+      'points': '30',
+      'status': 'locked'
     },
     {
       'image': 'assets/images/neomonde_logo.jpg',
@@ -49,7 +62,8 @@ class RewardsCoupons {
       'description': 'Enjoy \$1 off your next order!',
       'details': 'Minimum order of \$12 required.',
       'expiration': '2025-05-01',
-      'points': '20'
+      'points': '20',
+      'status': 'locked'
     },
     {
       'image': 'assets/images/neomonde_logo.jpg',
@@ -57,7 +71,8 @@ class RewardsCoupons {
       'description': '10% off your next bowl!',
       'details': 'Restrictions apply.',
       'expiration': '2025-05-01',
-      'points': '30'
+      'points': '30',
+      'status': 'locked'
     },
     {
       'image': 'assets/images/sweetgreen_logo.png',
@@ -65,7 +80,8 @@ class RewardsCoupons {
       'description': '\$5 off your next order!',
       'details': 'Minimum order of \$20 required.',
       'expiration': '2025-05-01',
-      'points': '100'
+      'points': '100',
+      'status': 'locked'
     },
   ];
 
@@ -76,7 +92,8 @@ class RewardsCoupons {
       'description': 'Free order of classic pita chips',
       'details': 'with the purchase of a bowl.',
       'expiration': '2025-02-01',
-      'points': '60'
+      'points': '60',
+      'status': 'redeemed'
     },
     {
       'image': 'assets/images/raleighraw_logo.png',
@@ -84,7 +101,8 @@ class RewardsCoupons {
       'description': 'Free add-on!',
       'details': 'Valid on regular-sized smoothies or bowls',
       'expiration': '2025-02-15',
-      'points': '50'
+      'points': '50',
+      'status': 'redeemed'
     },
   ];
 
@@ -92,10 +110,11 @@ class RewardsCoupons {
     {
       'image': 'assets/images/chipotle_logo.png',
       'title': 'Chipotle',
-      'description': '10% ooff your next order!',
+      'description': '10% off your next order!',
       'details': 'Minimum order of \$20 required.',
       'expiration': '2025-01-01',
-      'points': '50'
+      'points': '50',
+      'status': 'expired'
     },
     {
       'image': 'assets/images/sweetgreen_logo.png',
@@ -103,7 +122,8 @@ class RewardsCoupons {
       'description': '\$5 off your next order!',
       'details': 'Minimum order of \$20 required.',
       'expiration': '2025-01-01',
-      'points': '100'
+      'points': '100',
+      'status': 'expired'
     },
   ];
 }
