@@ -7,4 +7,6 @@ class AppColors {
   static const Color primaryText = Color(0xFF006D2F);
   static const Color primaryBorder = Color(0xFF2CA25F);
   static const Color couponBorder = Color(0xFFD9D9D9);
+  static const Color textButtonColor = Color(0xFF2CA25F);
+
 }

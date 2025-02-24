@@ -1,32 +1,102 @@
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:step_greener/theme/app_colors.dart';
 import 'package:step_greener/widgets/page_template.dart';
 
-// TODO: Implement
-class LocationsMapPage extends StatefulWidget {
+class LocationsMapPage extends StatelessWidget {
   static const PageType pageType = PageType.map;
   const LocationsMapPage({super.key});
 
   @override
-  State<LocationsMapPage> createState() => _LocationsMapPageState();
-}
-
-class _LocationsMapPageState extends State<LocationsMapPage> {
-  late GoogleMapController mapController;
-
-  final LatLng _center = const LatLng(45.521563, -122.677433);
-
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return GoogleMap(
-      onMapCreated: _onMapCreated,
-      initialCameraPosition: CameraPosition(
-        target: _center,
-        zoom: 11.0,
+    return Scaffold(
+      body: FlutterMap(
+        options: MapOptions(
+          initialCenter: LatLng(35.7846, -78.6750), // Initial location: NCSU Raleigh
+          initialZoom: 13.0,
+          interactionOptions: InteractionOptions(
+            flags: InteractiveFlag.all,
+          ),
+
+        ),
+        children: [
+          TileLayer(
+            urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+            subdomains: ['a', 'b', 'c'],
+          ),
+          MarkerLayer(  // Fill in with markers for Greenspaces that qualify for our app :)
+            rotate: true,
+            markers: [
+              Marker(
+                point: LatLng(35.7670857, -78.6828221), // Display location: Lake Raleigh
+                child: IconButton(
+                  icon: Icon(Icons.directions_walk), 
+                  color: AppColors.primaryText, 
+                  iconSize: 40.0,
+                  onPressed: () {
+                    // Handle open Record Walk Overlay
+                  }  
+                )
+              ),
+              Marker(
+                point: LatLng(35.782215, -78.663858), // Display location: Pullen Park
+                child: IconButton(
+                  icon: Icon(Icons.directions_walk), 
+                  color: AppColors.primaryText, 
+                  iconSize: 40.0,
+                  onPressed: () {
+                    // Handle open Record Walk Overlay
+                  }  
+                )
+              ),
+              Marker(
+                point: LatLng(35.769938, -78.652873), // Display location: Dorothea Dix Park
+                child: IconButton(
+                  icon: Icon(Icons.directions_walk), 
+                  color: AppColors.primaryText, 
+                  iconSize: 40.0,
+                  onPressed: () {
+                    // Handle open Record Walk Overlay
+                  }  
+                )
+              ),
+              Marker(
+                point: LatLng(35.762377, -78.714039), // Display location: Lake Johnson
+                child: IconButton(
+                  icon: Icon(Icons.directions_walk), 
+                  color: AppColors.primaryText, 
+                  iconSize: 40.0,
+                  onPressed: () {
+                    // Handle open Record Walk Overlay
+                  }  
+                )
+              ),
+              Marker(
+                point: LatLng(35.871218, -78.762510), // Display location: William B Umstead State Park  
+                child: IconButton(
+                  icon: Icon(Icons.directions_walk), 
+                  color: AppColors.primaryText, 
+                  iconSize: 40.0,
+                  onPressed: () {
+                    // Handle open Record Walk Overlay
+                  }  
+                )
+              ),
+              Marker(
+                point: LatLng(35.794491, -78.699914), // Display location: JC Raulston Arboretum
+                child: IconButton(
+                  icon: Icon(Icons.directions_walk), 
+                  color: AppColors.primaryText, 
+                  iconSize: 40.0,
+                  onPressed: () {
+                    // Handle open Record Walk Overlay
+                  }  
+                )
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

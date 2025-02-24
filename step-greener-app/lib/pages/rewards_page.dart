@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:step_greener/data/rewards_coupons.dart';
 import 'package:step_greener/theme/app_colors.dart';
+import 'package:step_greener/widgets/app_popup.dart';
 import 'package:step_greener/widgets/page_template.dart';
 import 'package:step_greener/widgets/points_display.dart';
 
@@ -71,74 +72,172 @@ class CouponCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-      elevation: 5,
-      child: Container(
-        padding: EdgeInsets.all(8),
-        child: Row(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: AppColors.couponBorder,
-                  width: 3, 
-                ),
-                borderRadius: BorderRadius.circular(3)
+    return ( coupon["status"]! == "locked" || coupon["status"]! == "unlocked" ) ?
+      GestureDetector(
+        onTap: () => showDialog(
+          builder: (BuildContext context) {
+            return AppPopup(
+              title: ( coupon["status"]! == "locked" ) ? "Unlock now?" : "Redeem now?", 
+              message: ( coupon["status"]! == "locked" ) ? Wrap(
+                children: [
+                  Text(
+                    "Tap \"Unlock!\" to claim your ${coupon["title"]} reward for just",
+                  ),
+                  PointsDisplay(points: int.parse(coupon["points"]!), minWidth: 65, noBox: true,),
+                  Text("!")
+                ]
+              ) :
+              Wrap(
+                children: [
+                  Text(
+                    "Ready to activate your ${coupon["title"]} reward? Tap \"Redeem\" now to treat yourself in the next 24 hours!"                
+                  )
+                ],
               ),
-              child: 
-                // Image on the left
-                Image.asset(
-                  coupon['image']!,
-                  width: 70,
-                  height: 70,
-                  fit: BoxFit.cover,
+              okButtonText: ( coupon["status"]! == "locked" ) ? "Unlock!" : "Redeem!",
+              cancelButtonText: "Back",
+              );
+          }, 
+          context: context,
+        ), 
+        child: Card(
+          margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          elevation: 5,
+          child: Container(
+            padding: EdgeInsets.all(8),
+            child: Row(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: AppColors.couponBorder,
+                      width: 3, 
+                    ),
+                    borderRadius: BorderRadius.circular(3)
+                  ),
+                  child: 
+                    // Image on the left
+                    Image.asset(
+                      coupon['image']!,
+                      width: 70,
+                      height: 70,
+                      fit: BoxFit.cover,
+                    ),
                 ),
-            ),
-            SizedBox(width: 10),
-            Expanded(
-              child: 
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
+                SizedBox(width: 10),
+                Expanded(
+                  child: 
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          coupon['title']!,
-                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        Row(
+                          children: [
+                            Text(
+                              coupon['title']!,
+                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                            Spacer(),
+                            ( coupon[ 'status' ] == 'locked' ) ? 
+                              PointsDisplay(points: int.parse(coupon['points']!), minWidth: 65) :
+                              SizedBox.shrink()
+                          ],
                         ),
-                        Spacer(),
-                        ( coupon[ 'status' ] == 'locked' ) ? 
-                          PointsDisplay(points: int.parse(coupon['points']!), minWidth: 65) :
-                          SizedBox.shrink()
+                        SizedBox( height: 5 ),
+                        // Description
+                        Text(
+                          coupon['description']!,
+                          style: TextStyle(color: Colors.black),
+                          softWrap: true,
+                        ),
+                        Text(
+                          coupon['details']!,
+                          style: TextStyle(color: Colors.grey[700], fontSize: 10),
+                        ),
+                        SizedBox( height: 5 ),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: Text(
+                            'Expires: ${coupon['expiration']}',
+                            style: TextStyle(color: Colors.red, fontSize: 10),
+                          ),
+                        )
                       ],
                     ),
-                    SizedBox( height: 5 ),
-                    // Description
-                    Text(
-                      coupon['description']!,
-                      style: TextStyle(color: Colors.black),
-                      softWrap: true,
-                    ),
-                    Text(
-                      coupon['details']!,
-                      style: TextStyle(color: Colors.grey[700], fontSize: 10),
-                    ),
-                    SizedBox( height: 5 ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: Text(
-                        'Expires: ${coupon['expiration']}',
-                        style: TextStyle(color: Colors.red, fontSize: 10),
-                      ),
-                    )
-                  ],
                 ),
+              ],
             ),
-          ],
+          ),
+        )
+      ) :
+      Card(
+        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        elevation: 5,
+        child: Container(
+          padding: EdgeInsets.all(8),
+          child: Row(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: AppColors.couponBorder,
+                    width: 3, 
+                  ),
+                  borderRadius: BorderRadius.circular(3)
+                ),
+                child: 
+                  // Image on the left
+                  Image.asset(
+                    coupon['image']!,
+                    width: 70,
+                    height: 70,
+                    fit: BoxFit.cover,
+                  ),
+              ),
+              SizedBox(width: 10),
+              Expanded(
+                child: 
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            coupon['title']!,
+                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                          Spacer(),
+                          ( coupon[ 'status' ] == 'locked' ) ? 
+                            PointsDisplay(points: int.parse(coupon['points']!), minWidth: 65) :
+                            SizedBox.shrink()
+                        ],
+                      ),
+                      SizedBox( height: 5 ),
+                      // Description
+                      Text(
+                        coupon['description']!,
+                        style: TextStyle(color: Colors.black),
+                        softWrap: true,
+                      ),
+                      Text(
+                        coupon['details']!,
+                        style: TextStyle(color: Colors.grey[700], fontSize: 10),
+                      ),
+                      SizedBox( height: 5 ),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          'Expires: ${coupon['expiration']}',
+                          style: TextStyle(color: Colors.red, fontSize: 10),
+                        ),
+                      )
+                    ],
+                  ),
+              ),
+            ],
+          ),
         ),
-      ),
-    );
+      );
   }
 }
