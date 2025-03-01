@@ -1,3 +1,4 @@
+
 // my_app_bar.dart
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -48,6 +49,16 @@ class StepGreenerAppBar extends StatelessWidget implements PreferredSizeWidget {
                     );
                   } else if ( pageType == PageType.rewards ) {
                     return Text("Rewards", 
+                      style: GoogleFonts.poppins(
+                        textStyle: TextStyle(
+                          fontSize: width * 0.06,
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.primaryText
+                        )
+                      ) 
+                    );
+                  } else if ( pageType == PageType.profile ) {
+                    return Text("Profile", 
                       style: GoogleFonts.poppins(
                         textStyle: TextStyle(
                           fontSize: width * 0.06,
