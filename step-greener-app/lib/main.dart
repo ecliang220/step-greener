@@ -1,48 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:step_greener/pages/splash_screen.dart';
 
-// helloooooo
+// helloooooo dis is our App :3
+StepGreenerApp stepGreenerApp = StepGreenerApp();
 
 void main() {
-  runApp(const MyApp());
+  runApp(stepGreenerApp);
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  late GoogleMapController mapController;
-
-  final LatLng _center = const LatLng(45.521563, -122.677433);
-
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
-  }
+class StepGreenerApp extends StatelessWidget {
+  const StepGreenerApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        useMaterial3: true,
-        colorSchemeSeed: Colors.green[700],
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('StepGreener'),
-          elevation: 2,
-        ),
-        body: GoogleMap(
-          onMapCreated: _onMapCreated,
-          initialCameraPosition: CameraPosition(
-            target: _center,
-            zoom: 11.0,
-          ),
+        textTheme: GoogleFonts.poppinsTextTheme(
+          Theme.of(context).textTheme
         ),
       ),
+      // home: PageTemplate(page: MyStepLogPage(), pageType: MyStepLogPage.pageType,)
+      home: SplashScreen()
     );
   }
 }
