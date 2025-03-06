@@ -18,22 +18,22 @@ class StepDisplayState extends State<StepDisplay> {
   int _points = 0;
   bool _isLoading = true;
   bool _hasError = false;
-  late String _currentDate;
+  late String _currentDate; // ✅ Track current selected date
 
   @override
   void initState() {
     super.initState();
-    _currentDate = widget.selectedDate; 
+    _currentDate = widget.selectedDate; // ✅ Initialize with first date
     _loadCSV();
   }
 
   @override
   void didUpdateWidget(StepDisplay oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.selectedDate != _currentDate) { 
+    if (widget.selectedDate != _currentDate) { // ✅ Detect when date changes
       setState(() {
         _currentDate = widget.selectedDate;
-        _isLoading = true; 
+        _isLoading = true; // ✅ Show loading indicator for new selection
       });
       _updateSelectedDateData();
     }
@@ -68,13 +68,13 @@ class StepDisplayState extends State<StepDisplay> {
       setState(() {
         _steps = row[1] is int ? row[1] : int.tryParse(row[1].toString()) ?? 0;
         _points = row[2] is int ? row[2] : int.tryParse(row[2].toString()) ?? 0;
-        _isLoading = false; 
+        _isLoading = false; // ✅ Stop loading once data is updated
       });
     } else {
       setState(() {
         _steps = 0;
         _points = 0;
-        _isLoading = false; 
+        _isLoading = false; // ✅ Stop loading even if no data is found
       });
     }
   }
@@ -82,31 +82,31 @@ class StepDisplayState extends State<StepDisplay> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
+      width: double.infinity, // ✅ Makes StepDisplay full width
       padding: EdgeInsets.all(12),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         color: Colors.white,
-        boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 5)],
+        boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 5)], // ✅ Adds shadow
       ),
       child: _isLoading
           ? Center(child: CircularProgressIndicator())
           : _hasError
               ? Center(child: Text("Failed to load data.", style: TextStyle(color: Colors.red)))
               : Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center, // ✅ Center content
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.all(6),
+                      width: double.infinity, // ✅ Ensure full width
+                      padding: EdgeInsets.all(8),
                       decoration: BoxDecoration(
                         color: AppColors.textButtonColor,
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
-                        _currentDate, 
-                        textAlign: TextAlign.center,
+                        _currentDate,
+                        textAlign: TextAlign.center, // ✅ Center-align date text
                         style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                     ),
